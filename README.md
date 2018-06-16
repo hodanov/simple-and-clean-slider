@@ -11,7 +11,9 @@ All source code is available jointly under the MIT License and the Beerware Lice
 
 ## Demo
 
-To see the slider, clone the repo.
+To see the slider, clone the repo or click a link below.
+
+[Demo](https://hodalab.com/works/simple-and-clean-slider)
 
 ## Requirements
 
