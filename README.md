@@ -1,4 +1,4 @@
-# A responsive jQuery slider
+# A simple and clean slider
 
 This is the very simple and clean responsive jQuery slider.
 
