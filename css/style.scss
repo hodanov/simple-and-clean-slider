@@ -1,0 +1,280 @@
+/* -----Container----- */
+body {
+  margin: 0;
+  background-color: #000;
+}
+.container {
+  margin: auto;
+  width: 80%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media screen and (max-width: 767px) {
+    width: 95%;
+  }
+}
+
+/* -----Slider----- */
+$font-color: #fff;
+$parts-color: #fff;
+$parts-arrow-color: #aaa;
+$slide-height: 41.17%;
+$duration-of-sliding-animation: .5s;
+$duration-of-controller-animation: .3s;
+
+@mixin slide-controller-common-style {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid $parts-color;
+  color: $parts-color;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-transition: all $duration-of-controller-animation;
+  transition: all $duration-of-controller-animation;
+}
+@mixin slide-control-line {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 14px;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+}
+@mixin media-query-slide-caption {
+  @media screen and (max-width: 767px) {
+    h2 {
+      margin: 0 3rem 1.5rem;
+      font-size: 1.2rem;
+    }
+    p {
+      margin: -1rem 3rem 1.75rem;
+      font-size: .8rem;
+    }
+  }
+}
+@mixin media-query-slide-control($direction) {
+  @media screen and (max-width: 767px) {
+    height: 30px;
+    width: 30px;
+    opacity: 1;
+    @if $direction == "left"{
+      .slide-control-line {
+        left: 9px;
+        height: 10px;
+      }
+    }
+    @else if $direction == "right" {
+      .slide-control-line {
+        right: 9px;
+        height: 10px;
+      }
+    }
+  }
+  @media screen and (max-width: 1023px) {
+    opacity: 1;
+    @if $direction == "left" {
+      left: 1%;
+    }
+    @else if $direction == "right" {
+      right: 1%;
+    }
+  }
+}
+@mixin media-query-controll-btn {
+  @media screen and (max-width: 767px) {
+    ul {
+      margin: .5rem 0;
+      li a {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}
+
+.slide-window {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  .slide-wrapper {
+    position: relative;
+    left: 0;
+    display: flex;
+    -webkit-transition: right $duration-of-sliding-animation;
+    transition: right $duration-of-sliding-animation;
+    -webkit-transition: left $duration-of-sliding-animation;
+    transition: left $duration-of-sliding-animation;
+    .slide {
+      position: relative;
+      width: 100%;
+      &:before {
+        content:"";
+        display: block;
+        padding-top: $slide-height;
+      }
+      .slide-image {
+        background-size: cover;
+        background-position: 50% 50%;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+      .slide-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        color: $font-color;
+        background: linear-gradient(rgba(255,255,255,0), rgba(0,0,0,.7));
+        h2 {
+          margin: 2rem 4.5rem;
+          font-size: 2rem;
+        }
+        p {
+          margin: -1rem 4.5rem 3rem;
+          font-size: 1.5rem;
+        }
+        @include media-query-slide-caption;
+      }
+    }
+  }
+  &:hover {
+    .slide-control-left {
+      left: 1%;
+      opacity: 1;
+    }
+    .slide-control-right {
+      right: 1%;
+      opacity: 1;
+    }
+  }
+}
+
+.slide-control-left {
+  @include slide-controller-common-style;
+  left: 10%;
+  right: auto;
+  .slide-control-line {
+    @include slide-control-line;
+    left: 12px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    &:nth-child(2) {
+      -webkit-transform: translateY(1px) rotate(-135deg);
+      transform: translateY(1px) rotate(-135deg);
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $parts-color;
+      -webkit-transition: background-color $duration-of-controller-animation;
+      transition: background-color $duration-of-controller-animation;
+    }
+  }
+  &:hover {
+    background-color: $parts-color;
+    .slide-control-line:after {
+      background-color: $parts-arrow-color;
+    }
+  }
+  .rotate-left-top:after {
+    animation: arrowLineRotation 0.49s;
+  }
+  .rotate-left-down:after {
+    animation: arrowLineRotationRev 0.49s;
+  }
+  @include media-query-slide-control("left")
+}
+
+.slide-control-right {
+  @include slide-controller-common-style;
+  right: 10%;
+  left: auto;
+  .slide-control-line {
+    @include slide-control-line;
+    right: 12px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    &:nth-child(2) {
+      -webkit-transform: translateY(1px) rotate(135deg);
+      transform: translateY(1px) rotate(135deg);
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $parts-color;
+      -webkit-transition: background-color $duration-of-controller-animation;
+      transition: background-color $duration-of-controller-animation;
+    }
+  }
+  &:hover {
+    background-color: $parts-color;
+    .slide-control-line:after {
+      background-color: $parts-arrow-color;
+    }
+  }
+  .rotate-right-down:after {
+    animation: arrowLineRotation 0.49s;
+  }
+  .rotate-right-top:after {
+    animation: arrowLineRotationRev 0.49s;
+  }
+  @include media-query-slide-control("right")
+}
+@keyframes arrowLineRotation {
+  to {
+    transform: rotate(180deg);
+  }
+}
+@keyframes arrowLineRotationRev {
+  to {
+    transform: rotate(-180deg);
+  }
+}
+
+.slide-control-btn {
+  ul {
+    position: absolute;
+    padding: 0;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    li {
+      margin: 0 5px;
+      list-style: none;
+      a {
+        display: block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1px solid $parts-color;
+        cursor: pointer;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+        &.active,
+        &:hover {
+          background-color: $parts-color;
+        }
+      }
+    }
+  }
+  @include media-query-controll-btn;
+}
