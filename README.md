@@ -11,7 +11,7 @@ All source code is available jointly under the MIT License and the Beerware Lice
 
 ## Demo
 
-To see the slider, clone the repo or click a link below.
+To see the slider, clone the repo.
 
 ## Requirements
 
@@ -33,8 +33,8 @@ The slider with the following HTML structure:
   - `slide-wrapper` contains __slides__ and decide width
     - `slide` each __slide item__ of the slider
       - `a` a link
-       - `slide-image` the div element, which can include __slide image__
-       - `slide-caption` the div element, which can include some __text__
+        - `slide-image` the div element, which can include __slide image__
+        - `slide-caption` the div element, which can include some __text__
 
 ### 1. slide-window
 
@@ -52,8 +52,8 @@ The `slide-window` is the main container. It can contain slide items.
 
 The `slide-wrapper` is the 2nd main container. It can decide width:
 
-- width = x * 100(%)
-  - x is a number of slide items
+- _width = x * 100(%)_
+  - _x_ is a number of slide items
 
 If there are two slide items, add `style="width: 200%;"` in `slide-wrapper`.
 
