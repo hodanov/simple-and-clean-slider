@@ -4,10 +4,7 @@ This is the very simple and clean responsive jQuery slider.
 
 The image size is adjusted automatically, so there is no need to resize image files.
 
-## LICENSE
-
-All source code is available jointly under the MIT License and the Beerware License. Please see
-[LICENSE.md](LICENSE.md) for details.
+![slider-demo](./slider-demo.gif "demo")
 
 ## Demo
 
