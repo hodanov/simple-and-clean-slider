@@ -90,4 +90,4 @@ Add `style="background-image: url(IMAGE_FILE)"` to `slide-image`. The image size
 
 ## Author
 
-[Hodaka Sakamoto](https://hodalog.com/)
+[Hoda](https://hodalog.com/)
